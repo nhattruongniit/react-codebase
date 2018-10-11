@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class Register extends Component {
+export default class Register extends Component {
     propTypes = {
         register: PropTypes.isRequired
     }

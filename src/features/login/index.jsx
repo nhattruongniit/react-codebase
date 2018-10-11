@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actions from './redux/actions';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -45,56 +49,81 @@ const styles = theme => ({
   },
 });
 
-function Login(props) {
-  const { classes } = props;
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <main className={classes.layout}>
-        <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Login
-          </Typography>
-          <form className={classes.form}>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus />
-            </FormControl>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input
-                name="password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </FormControl>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
+
+class Login extends Component {
+
+  handleSubmit = (e, payload) => {
+    e.preventDefault();
+    this.props.login(payload);
+  }
+  
+  render() {
+    const { classes } = this.props;
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <main className={classes.layout}>
+          <Paper className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
               Login
-            </Button>
-          </form>
-        </Paper>
-      </main>
-    </React.Fragment>
-  );
+            </Typography>
+            <form className={classes.form} onSubmit={this.handleSubmit}>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="email">Email Address</InputLabel>
+                <Input id="email" name="email" autoComplete="email" autoFocus />
+              </FormControl>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input
+                  name="password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+              </FormControl>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Login
+              </Button>
+            </form>
+          </Paper>
+        </main>
+      </React.Fragment>
+    )
+  };
 }
 
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+
+/* istanbul ignore next */
+function mapStateToProps(state) {
+  return {
+    login: state.login
+  };
+}
+
+/* istanbul ignore next */
+function mapDispatchToProps(dispatch) {
+  bindActionCreators({ ...actions }, dispatch)
+}
+
+export default withStyles(styles)(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login))
