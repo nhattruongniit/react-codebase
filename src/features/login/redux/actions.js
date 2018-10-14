@@ -1,17 +1,36 @@
-import { LOGIN_SUCCESS } from './reducer';
+import { 
+  LOGIN_SUCCESS, 
+  LOGIN_FAIL 
+} from './reducer';
 
-export function login (text) {
-  // return (dispatch) => {
-  //   fetch('https://www.google.com/search?q=secret+sauce').then(res => {
-  //     dispatch({
-  //       type: LOGIN_SUCCESS
-  //     });
-  //     console.log(res)
-  //   })
+// export function Login (text) {
+//   return (dispatch) => {
+//     fetch('https://www.google.com/search?q=secret+sauce').then(res => {
+//       dispatch({
+//         type: LOGIN_SUCCESS
+//       });
+//       console.log(res)
+//     }).error(err => {
+//       dispatch({
+//         type: LOGIN_FAIL
+//       });
+//       console.log('err', err)
+//     })
   
-  // }
-  return {
-    type: LOGIN_SUCCESS,
-    text
-  }
+//   }
+// }
+
+export const loginFunc = () => (dispatch) => {
+  // do something
+  fetch('https://www.google.com/search?q=secret+sauce').then(res => {
+    dispatch({
+      type: LOGIN_SUCCESS
+    });
+    console.log(res)
+  }).error(err => {
+    dispatch({
+      type: LOGIN_FAIL
+    });
+    console.log('err', err)
+  })
 }
