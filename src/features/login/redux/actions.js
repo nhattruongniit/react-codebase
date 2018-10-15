@@ -1,11 +1,36 @@
-import { LOGIN_SUCCESS } from './reducer';
+import { 
+  LOGIN_SUCCESS, 
+  LOGIN_FAIL 
+} from './reducer';
 
-export const loginFn = text => dispatch => {
-  console.log(text);
+// export function Login (text) {
+//   return (dispatch) => {
+//     fetch('https://www.google.com/search?q=secret+sauce').then(res => {
+//       dispatch({
+//         type: LOGIN_SUCCESS
+//       });
+//       console.log(res)
+//     }).error(err => {
+//       dispatch({
+//         type: LOGIN_FAIL
+//       });
+//       console.log('err', err)
+//     })
+  
+//   }
+// }
+
+export const loginFunc = () => (dispatch) => {
+  // do something
   fetch('https://www.google.com/search?q=secret+sauce').then(res => {
-      dispatch({
-        type: LOGIN_SUCCESS
-      });
-      console.log(res)
-    })
+    dispatch({
+      type: LOGIN_SUCCESS
+    });
+    console.log(res)
+  }).catch(err => {
+    dispatch({
+      type: LOGIN_FAIL
+    });
+    console.log('err', err)
+  })
 }

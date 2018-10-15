@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
@@ -49,13 +48,11 @@ const styles = theme => ({
   },
 });
 
-
-
 class Login extends Component {
 
   handleSubmit = (e, payload) => {
     e.preventDefault();
-    this.props.loginFn(payload);
+    this.props.loginFunc();
   }
   
   render() {

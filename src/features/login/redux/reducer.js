@@ -8,8 +8,14 @@ const initialState = {
 
 export default function LoginReducer(state = initialState, action) {
   switch (action.type) {
-    case 'LOGIN_BEGIN':
+    case LOGIN_BEGIN:
       return {
+        showLoading: true,
+        ...state,
+      }
+    case LOGIN_FAIL:
+      return {
+        showLoading: false,
         ...state,
       }
     default:
