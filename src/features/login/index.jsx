@@ -55,7 +55,7 @@ class Login extends Component {
 
   handleSubmit = (e, payload) => {
     e.preventDefault();
-    this.props.login(payload);
+    this.props.loginFn(payload);
   }
   
   render() {
@@ -119,9 +119,7 @@ function mapStateToProps(state) {
 }
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
-  bindActionCreators({ ...actions }, dispatch)
-}
+const mapDispatchToProps = actions;
 
 export default withStyles(styles)(connect(
   mapStateToProps,
