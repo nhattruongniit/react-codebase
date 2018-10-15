@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './features/app';
 import * as serviceWorker from './serviceWorker';
 
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer';
@@ -14,10 +14,11 @@ import './scss/index.css';
 
 // const store = createStore(rootReducer);
 
+const middleware = applyMiddleware(thunk);
+
 const store = createStore(
   rootReducer, /* preloadedState, */
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 );
 
 ReactDOM.render((

@@ -53,6 +53,7 @@ class Login extends Component {
   handleSubmit = (e, payload) => {
     e.preventDefault();
     this.props.loginFunc();
+    console.log(this.props.showLoading)
   }
   
   render() {
