@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as actions from './redux/actions';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -50,14 +51,19 @@ const styles = theme => ({
 
 class Login extends Component {
 
-  handleSubmit = (e, payload) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.props.loginFunc();
-    console.log(this.props.showLoading)
+    this.props.actions.Login().then(res => {
+      console.log(res, this.props.login.showLoading);
+    })
+    .catch(err => {
+      console.log('err: ', err, this.props.login.showLoading);
+    });
   }
   
   render() {
     const { classes } = this.props;
+
     return (
       <React.Fragment>
         <CssBaseline />
@@ -105,7 +111,9 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  classes: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+  login: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 
@@ -117,9 +125,14 @@ function mapStateToProps(state) {
 }
 
 /* istanbul ignore next */
-const mapDispatchToProps = actions;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ ...actions }, dispatch)
+  }
+}
 
-export default withStyles(styles)(connect(
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login))
+)(withStyles(styles)(Login));

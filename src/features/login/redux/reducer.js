@@ -10,13 +10,18 @@ export default function LoginReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_BEGIN:
       return {
-        showLoading: true,
         ...state,
+        showLoading: true
+      }
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        showLoading: true
       }
     case LOGIN_FAIL:
       return {
-        showLoading: false,
         ...state,
+        showLoading: false
       }
     default:
       return state

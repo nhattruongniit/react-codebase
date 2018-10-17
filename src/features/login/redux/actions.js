@@ -1,36 +1,56 @@
 import { 
+  LOGIN_BEGIN,
   LOGIN_SUCCESS, 
   LOGIN_FAIL 
 } from './reducer';
 
-// export function Login (text) {
-//   return (dispatch) => {
-//     fetch('https://www.google.com/search?q=secret+sauce').then(res => {
-//       dispatch({
-//         type: LOGIN_SUCCESS
-//       });
-//       console.log(res)
-//     }).error(err => {
-//       dispatch({
-//         type: LOGIN_FAIL
-//       });
-//       console.log('err', err)
-//     })
-  
-//   }
-// }
+import axios from 'axios';
 
-export const loginFunc = () => (dispatch) => {
-  // do something
-  fetch('https://www.google.com/search?q=secret+sauce').then(res => {
+export function Login () {
+  return (dispatch) => {
     dispatch({
-      type: LOGIN_SUCCESS
+        type: LOGIN_BEGIN
     });
-    console.log(res)
-  }).catch(err => {
-    dispatch({
-      type: LOGIN_FAIL
+
+    const promise = new Promise((resolve, reject) => {
+      axios('https://api.coinmarketcap.com/v2/listings/', {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => {
+        dispatch({
+          type: LOGIN_SUCCESS
+        });
+       resolve(res.data)
+      })
+      .catch(err => {
+        dispatch({
+          type: LOGIN_FAIL
+        });
+        reject(err.response)
+      })
     });
-    console.log('err', err)
-  })
+
+    return promise
+  }
 }
+
+// export const loginFunc = () => (dispatch) => {
+//   // do something
+//   dispatch({
+//     type: LOGIN_BEGIN
+//   })
+//   fetch('https://api.coinmarketcap.com/v2/listings/').then(res => {
+//     dispatch({
+//       type: LOGIN_SUCCESS
+//     });
+//     console.log(res)
+//   }).catch(err => {
+//     dispatch({
+//       type: LOGIN_FAIL
+//     });
+//     console.log('err', err)
+//   })
+// }

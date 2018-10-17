@@ -12,8 +12,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './scss/index.css';
 
-// const store = createStore(rootReducer);
-
 const middleware = applyMiddleware(thunk);
 
 const store = createStore(
