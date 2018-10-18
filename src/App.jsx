@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Header from '../../common/components/Header';
-import Login from '../login';
-import Register from '../register';
-import Roster from '../roster';
+import Header from './common/components/Header';
+import Login from './features/login';
+import Register from './features/register';
+import Roster from './features/roster';
+import StopPropagation from './features/stop-propagation';
+import ComponentPure from './features/pure-component';
 
 class App extends Component {
   render() {
@@ -15,6 +17,8 @@ class App extends Component {
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/roster' component={Roster} />
+          <Route path='/stop-propagation' component={StopPropagation} />
+          <Route path='/pure-component' component={ComponentPure} />
         </Switch>
         {/* <img src="/assets/images/avatar.jpg" /> */}
       </main>
