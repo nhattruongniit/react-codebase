@@ -12,6 +12,7 @@ export default class Header extends Component {
             <li><Link to='/roster'>Roster</Link></li>
             <li><Link to='/stop-propagation'>Stop Propagation</Link></li>
             <li><Link to='/pure-component'>Pure Component</Link></li>
+            <li><Link to='/comment'>Comment</Link></li>
           </ul>
         </nav>
       </header>

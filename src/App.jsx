@@ -7,6 +7,7 @@ import Register from './features/register';
 import Roster from './features/roster';
 import StopPropagation from './features/stop-propagation';
 import ComponentPure from './features/pure-component';
+import CommentBox from './features/comment';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path='/roster' component={Roster} />
           <Route path='/stop-propagation' component={StopPropagation} />
           <Route path='/pure-component' component={ComponentPure} />
+          <Route path='/comment' component={CommentBox} />
         </Switch>
         {/* <img src="/assets/images/avatar.jpg" /> */}
       </main>
