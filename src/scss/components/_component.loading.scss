@@ -1,0 +1,40 @@
+/* ==========================================================================
+   # START HEADER COMPONENT
+   ========================================================================== 
+*/
+
+.c-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: .5;
+  }
+}
+
+.c-loading__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  margin: -20px 0 -20px 0;
+}
+
+/* ==========================================================================
+   # END HEADER COMPONENT
+   ========================================================================== 
+*/

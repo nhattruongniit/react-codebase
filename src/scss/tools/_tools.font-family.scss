@@ -1,0 +1,18 @@
+// @font-face {
+//     font-family: 'DancingScriptRegular';
+//     src: url('../fonts/DancingScriptRegular.eot');
+//     src: url('../fonts/DancingScriptRegular.eot') format('embedded-opentype'),
+//          url('../fonts/DancingScriptRegular.woff2') format('woff2'),
+//          url('../fonts/DancingScriptRegular.woff') format('woff'),
+//          url('../fonts/DancingScriptRegular.ttf') format('truetype'),
+//          url('../fonts/DancingScriptRegular.svg#DancingScriptRegular') format('svg');
+// }
+
+@mixin font-family($locale){
+    @if ($locale == 'Roboto') {
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    }@else if ($locale == 'Playfair') {
+        font-family: "Playfair Display", sans-serif;
+        font-weight: bold;
+    }
+}

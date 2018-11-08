@@ -1,30 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer';
 
-import { BrowserRouter } from 'react-router-dom';
+import { App, Login, Register } from './feature';
+import * as serviceWorker from './serviceWorker';
 
 import './scss/index.css';
 
 const middleware = applyMiddleware(thunk);
 
 const store = createStore(
-  rootReducer, /* preloadedState, */
-  compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-);
+    rootReducer,
+    compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+)
 
 ReactDOM.render((
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+    <Provider store={store}>
+        <BrowserRouter>
+            <Switch>
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
+                <Route path='/' component={App} />
+                <Route path='**' component={Register} />
+            </Switch>
+        </BrowserRouter>
+    </Provider>
 ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

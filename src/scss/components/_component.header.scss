@@ -1,0 +1,41 @@
+/* ==========================================================================
+   # START HEADER COMPONENT
+   ========================================================================== 
+*/
+
+.c-header {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-header__title {
+  color: #5c5c5f;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 30px;
+  border-radius: 3px;
+  text-transform: none;
+}
+
+.c-header__button {
+  width: 41px !important;
+  min-width: 41px !important;
+  height: 41px !important;
+  font-size: 20px;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #5c5c5f;
+  }
+}
+
+/* ==========================================================================
+   # END HEADER COMPONENT
+   ========================================================================== 
+*/

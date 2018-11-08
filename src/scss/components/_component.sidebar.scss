@@ -1,0 +1,138 @@
+/* ==========================================================================
+   # START SIDEBAR COMPONENT
+   ========================================================================== 
+*/
+
+.c-sidebar {
+    top: 0;
+    left: 0;
+    width: 260px;
+    border: none;
+    bottom: 0;
+    z-index: 5;
+    position: fixed;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.c-sidebar__top {
+    padding: 15px 15px;
+    z-index: 4;
+    position: relative;
+
+    &::after {
+        content: "";
+        right: 15px;
+        width: calc(100% - 30px);
+        bottom: 0;
+        height: 1px;
+        position: absolute;
+        background-color: rgba(180, 180, 180, 0.3);
+    }
+}
+
+.c-sidebar__img {
+    top: 22px;
+    width: 35px;
+    border: 0;
+    position: absolute;
+    vertical-align: middle;
+}
+
+.c-sidebar__logo {
+    width: 30px;
+    display: inline-block;
+    max-height: 30px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+.c-sidebar__logoLink {
+    color: #fff;
+    padding: 5px 0;
+    display: block;
+    font-size: 18px;
+    text-align: left;
+    font-weight: 400;
+    line-height: 30px;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.c-sidebar__bg {
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    z-index: 1;
+    display: block;
+    position: absolute;
+    background: url(/assets/images/bg-sidebar.jpg) center center;
+    background-size: cover;
+
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        display: block;
+        opacity: .8;
+        position: absolute;
+        background: #000;
+    }
+}
+
+.c-sidebar__nav {
+    width: 260px;
+    height: calc(100vh - 75px);
+    z-index: 4;
+    position: relative;
+    overflow: auto;
+}
+
+.c-sidebar__text {
+    font-weight: 300;
+}
+
+.c-sidebar__icon {
+    color: #fff !important;
+}
+
+.c-sidebar__link {
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+
+    &.active {
+        .c-sidebar__button {
+            background-color: $global-color-primary !important;
+        }
+    }
+}
+
+.c-sidebar__button{
+    margin: 10px 15px 0 !important;
+    padding: 10px 15px !important;
+    transition: all .5s linear !important;
+    font-weight: 300;
+    line-height: 1.5em;
+    border-radius: 3px !important;
+    background-color: transparent !important;
+}
+
+.c-sidebar__expand {
+    padding: 0 5px;
+
+    &--right {
+        padding-left: 15px;
+    }
+}
+
+
+/* ==========================================================================
+   # END SIDEBAR COMPONENT
+   ========================================================================== 
+*/

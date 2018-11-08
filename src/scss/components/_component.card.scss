@@ -1,0 +1,43 @@
+/* ==========================================================================
+   # START CARD COMPONENT
+   ========================================================================== 
+*/
+
+.c-card {
+    color: rgba(0, 0, 0, 0.87);
+    width: 100%;
+    border: 0;
+    position: relative;
+    min-width: 0;
+    word-wrap: break-word;
+    font-size: .875rem;
+    margin-top: 30px;
+    background: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    margin-bottom: 30px;
+    border-radius: 6px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-card__header {
+    background: linear-gradient(60deg, $global-color-branch, $global-color-branch);
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+    padding: 30px 15px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin: -20px 15px 0;
+    position: relative;
+    border-bottom: none;
+}
+
+.c-card__body {
+    padding: 50px 20px;
+    position: relative;
+}
+
+/* ==========================================================================
+   # END CARD COMPONENT
+   ========================================================================== 
+*/
