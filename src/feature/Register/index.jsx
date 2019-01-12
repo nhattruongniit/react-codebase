@@ -1,3 +1,3 @@
-import Register from './DefaultPage';
+import Register from './Container';
 
 export default Register;

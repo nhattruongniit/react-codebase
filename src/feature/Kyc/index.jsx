@@ -1,3 +1,3 @@
-import Kyc from './DefaultPage';
+import Kyc from './Container';
 
 export default Kyc;

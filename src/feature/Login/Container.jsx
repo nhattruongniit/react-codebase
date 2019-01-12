@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from './redux/actions';
 import { Link } from 'react-router-dom';
-import { PropTypes } from 'prop-types';
 
 /* === import material ui === */
 import Avatar from '@material-ui/core/Avatar';
@@ -9,10 +12,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import PersonIcon from '@material-ui/icons/Person';
+import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+
+/* === import component === */
+import Loading from 'component/Loading';
 
 const styles = theme => ({
     layout: {
@@ -46,14 +52,14 @@ const styles = theme => ({
     },
 });
 
-class Register extends Component {
+class Login extends Component {
     static propTypes = {
         classes: PropTypes.object.isRequired
     }
 
-    handleLogin = (event) => {
-        event.preventDefault();
-        this.props.history.push('/')
+    handleLogin = (e) => {
+        e.preventDefault();
+        this.props.history.push('/');
     }
 
     render() {
@@ -65,10 +71,10 @@ class Register extends Component {
                 <main className={classes.layout}>
                     <Paper className={classes.paper}>
                         <Avatar className={classes.avatar}>
-                            <PersonIcon />
+                            <LockIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Register
+                            Login
                         </Typography>
                         <form className={classes.form} onSubmit={this.handleLogin}>
                             <FormControl margin="normal" required fullWidth>
@@ -84,15 +90,6 @@ class Register extends Component {
                                     autoComplete="current-password"
                                 />
                             </FormControl>
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="password">Confirm password</InputLabel>
-                                <Input
-                                    name="confirm-password"
-                                    type="password"
-                                    id="confirm-password"
-                                    autoComplete="confirm-password"
-                                />
-                            </FormControl>
                             <Button
                                 type="submit"
                                 fullWidth
@@ -100,17 +97,34 @@ class Register extends Component {
                                 color="primary"
                                 className={classes.submit}
                             >
-                                Register
+                                Login
                             </Button>
                         </form>
                         <div className={classes.submit}>
-                            <Link to="/login">Login Account?</Link>
+                            Already a member? <Link to="/register">Register</Link>.
                         </div>
                     </Paper>
                 </main>
+                <Loading showLoading={this.props.login.showLoading} />
             </React.Fragment>
         )
     }
 }
 
-export default withStyles(styles)(Register);
+function mapStateToProps(state) {
+    return {
+        login: state.login
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({ ...actions }, dispatch)
+    }
+}
+  
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(Login));
+  

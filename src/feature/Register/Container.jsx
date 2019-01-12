@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from './redux/actions';
 import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 /* === import material ui === */
 import Avatar from '@material-ui/core/Avatar';
@@ -12,16 +9,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockIcon from '@material-ui/icons/LockOutlined';
+import PersonIcon from '@material-ui/icons/Person';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-
-/* === import libs === */
-import lblSession from 'libs/lbl-session';
-
-/* === import component === */
-import Loading from 'component/Loading';
 
 const styles = theme => ({
     layout: {
@@ -55,32 +46,14 @@ const styles = theme => ({
     },
 });
 
-class Login extends Component {
+class Register extends Component {
     static propTypes = {
         classes: PropTypes.object.isRequired
     }
 
-    componentWillMount() {
-        const token = lblSession.getSession('token');
-        console.log('login', token)
-        if(token) this.props.history.push('/');
-    }
-
-    handleLogin = (e) => {
-        e.preventDefault();
-        // let data = {
-        //     "email": "peter@klaven",
-        //     "password": "cityslicka"
-        // }
-        // this.props.actions.Login(data).then(res => {
-        //     lblSession.setSession('token', res.token);
-        //     this.props.history.push('/');
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // })
-        lblSession.setSession('token', '123');
-        this.props.history.push('/');
+    handleLogin = (event) => {
+        event.preventDefault();
+        this.props.history.push('/login')
     }
 
     render() {
@@ -92,10 +65,10 @@ class Login extends Component {
                 <main className={classes.layout}>
                     <Paper className={classes.paper}>
                         <Avatar className={classes.avatar}>
-                            <LockIcon />
+                            <PersonIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Login
+                            Register
                         </Typography>
                         <form className={classes.form} onSubmit={this.handleLogin}>
                             <FormControl margin="normal" required fullWidth>
@@ -111,6 +84,15 @@ class Login extends Component {
                                     autoComplete="current-password"
                                 />
                             </FormControl>
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="password">Confirm password</InputLabel>
+                                <Input
+                                    name="confirm-password"
+                                    type="password"
+                                    id="confirm-password"
+                                    autoComplete="confirm-password"
+                                />
+                            </FormControl>
                             <Button
                                 type="submit"
                                 fullWidth
@@ -118,34 +100,17 @@ class Login extends Component {
                                 color="primary"
                                 className={classes.submit}
                             >
-                                Login
+                                Register
                             </Button>
                         </form>
                         <div className={classes.submit}>
-                            Already a member? <Link to="/register">Register</Link>.
+                            <Link to="/login">Login Account?</Link>
                         </div>
                     </Paper>
                 </main>
-                <Loading showLoading={this.props.login.showLoading} />
             </React.Fragment>
         )
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        login: state.login
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({ ...actions }, dispatch)
-    }
-}
-  
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withStyles(styles)(Login));
-  
+export default withStyles(styles)(Register);

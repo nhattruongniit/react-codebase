@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /* === material ui ===*/
 import List from '@material-ui/core/List';
@@ -17,9 +17,8 @@ const Sidebar = ({ ...props }) => {
     const sidebarLink = (
         <List>
             {routes.map((prop, key) => {
-                if (prop.redirect) return null; 
                 return (
-                    <NavLink to={prop.path} className="c-sidebar__link" activeClassName="active" key={key}>
+                    <Link to={prop.path} className="c-sidebar__link" key={key}>
                         <ListItem button className="c-sidebar__button">
                             <ListItemIcon className="c-sidebar__icon">
                                 {typeof prop.icon === "string" ? (
@@ -34,7 +33,7 @@ const Sidebar = ({ ...props }) => {
                                 disableTypography={true} 
                             />
                         </ListItem>
-                    </NavLink>
+                    </Link>
                 )
             })}
         </List>
@@ -43,7 +42,6 @@ const Sidebar = ({ ...props }) => {
         <div  className="c-sidebar__expand">
             <ListItem 
                 button  
-                className="" 
                 onClick={props.handleOpenExpand}
             >
                 <ListItemIcon className="c-sidebar__icon">
@@ -84,12 +82,12 @@ const Sidebar = ({ ...props }) => {
     return (
         <div className="c-sidebar">
             <div className="c-sidebar__top">
-                <NavLink to="/dashboard" className="c-sidebar__logoLink">
+                <Link to="/dashboard" className="c-sidebar__logoLink">
                     <div className="c-sidebar__logo">
                         <img className="c-sidebar__img" src={logo} alt="logo" />
                     </div>
                     {logoText}
-                </NavLink>
+                </Link>
             </div>
             <div className="c-sidebar__nav">
                 {sidebarLink}
@@ -102,55 +100,3 @@ const Sidebar = ({ ...props }) => {
 
   
 export default Sidebar;
-
-
-// if (prop.hasExpand) {
-//     return (
-//         <div  className="c-sidebar__expand" key={key}>
-//             <ListItem 
-//                 button  
-//                 className="c-sidebar__button" 
-//                 onClick={props.handleOpenExpand}
-//             >
-//                 <ListItemIcon className="c-sidebar__icon">
-//                     {typeof prop.icon === "string" ? (
-//                         <Icon>{prop.icon}</Icon>
-//                     ) : (
-//                         <prop.icon />
-//                     )}
-//                 </ListItemIcon>
-//                 <ListItemText 
-//                     className="c-sidebar__text"
-//                     primary={prop.text}
-//                     disableTypography={true}
-//                 />
-//                 {openExpand ? <ExpandLess /> : <ExpandMore />}
-//             </ListItem>
-//             <Collapse in={openExpand} timeout="auto" className="c-sidebar__expand--right" unmountOnExit>
-//                 {prop.navExpand.map((prop, key) => {
-//                     if (prop.text === 'Logout') {
-//                         return (
-//                             <List component="div" disablePadding onClick={props.handleLogout} key={key}>
-//                                 <ListItem button>
-//                                     <ListItemIcon className="c-sidebar__icon">
-//                                         {typeof prop.icon === "string" ? (
-//                                             <Icon>{prop.icon}</Icon>
-//                                         ) : (
-//                                             <prop.icon />
-//                                         )}
-//                                     </ListItemIcon>
-//                                     <ListItemText 
-//                                         className="c-sidebar__text"
-//                                         primary={prop.text}
-//                                         disableTypography={true} 
-//                                     />
-//                                 </ListItem>
-//                             </List>
-//                         )
-//                     }
-//                 })}
-               
-//             </Collapse>
-//         </div>
-//     )
-// }

@@ -1,3 +1,3 @@
-import App from './DefaultPage';
+import App from './Container';
 
 export default App;

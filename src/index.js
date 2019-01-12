@@ -23,10 +23,9 @@ ReactDOM.render((
     <Provider store={store}>
         <BrowserRouter>
             <Switch>
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Register} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/register' component={Register} />
                 <Route path='/' component={App} />
-                <Route path='**' component={Register} />
             </Switch>
         </BrowserRouter>
     </Provider>

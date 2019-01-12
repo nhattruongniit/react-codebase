@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 /* === import component ===*/
 import Sidebar from "component/Sidebar";
@@ -7,15 +7,12 @@ import Header from "component/Header";
 
 import { SidebarRoutes, SettingRoutes } from './Routes';
 
-import lblSession from 'libs/lbl-session';
-
 const logo = '/assets/images/logo.png';
 
 const switchRoutes = (
     <Switch>
         {SidebarRoutes.map((prop, key) => {
-            if(prop.redirect) return <Route path={prop.path} component={prop.component} key={key} /> //<Redirect from={prop.path} to={prop.to} key={key} />;
-            return <Route path={prop.path} component={prop.component} key={key} />
+            return <Route exact path={prop.path} component={prop.component} key={key} />
         })}
     </Switch>
 )
@@ -32,24 +29,15 @@ const titlePage = () => {
 }
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            openExpand: false
-        }
+    state = {
+        openExpand: false
     }
-
-    componentWillMount() {
-        const token = lblSession.getSession('token');
-        if(token === null) this.props.history.push('/login');
-    }
-
+    
     handleOpenExpand = () => {
         this.setState({ openExpand: !this.state.openExpand })
     }
 
     handleLogout = () => {
-        lblSession.removeSession();
         this.props.history.push('/login');
     }
 
