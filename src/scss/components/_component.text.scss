@@ -1,0 +1,36 @@
+/* ==========================================================================
+   # START TEXT COMPONENT
+   ========================================================================== 
+*/
+
+.c-text {
+    &--error {
+        color: #f00;    
+        margin: 10px 0;
+    }
+}
+
+.c-text__status {
+    font-weight: 500;
+    
+    &.is-NEW {
+        color: $global-color-text-new; 
+    }
+
+    &.is-APPROVED {
+        color: $global-color-text-approved;
+    }
+
+    &.is-REJECTED {
+        color: $global-color-text-rejected;
+    }
+
+    &.is-PENDING {
+        color: $global-color-text-pending;
+    }
+}
+
+/* ==========================================================================
+   # END TEXT COMPONENT
+   ========================================================================== 
+*/

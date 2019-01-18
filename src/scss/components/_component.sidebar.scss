@@ -6,11 +6,12 @@
 .c-sidebar {
     top: 0;
     left: 0;
-    width: 260px;
+    width: 240px;
     border: none;
     bottom: 0;
     z-index: 5;
     position: fixed;
+    transition: all .3s linear;
     box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
     color: #fff;
 }
@@ -52,7 +53,7 @@
     padding: 5px 0;
     display: block;
     font-size: 18px;
-    text-align: left;
+    text-align: center;
     font-weight: 400;
     line-height: 30px;
     text-transform: uppercase;
@@ -84,7 +85,6 @@
 }
 
 .c-sidebar__nav {
-    width: 260px;
     height: calc(100vh - 75px);
     z-index: 4;
     position: relative;
@@ -106,6 +106,11 @@
     text-decoration: none;
     color: #fff;
 
+    &:hover, &:focus, &:visited {
+        text-decoration: none;
+        color: #fff;
+    }
+
     &.active {
         .c-sidebar__button {
             background-color: $global-color-primary !important;
@@ -114,7 +119,7 @@
 }
 
 .c-sidebar__button{
-    margin: 10px 15px 0 !important;
+    margin: 10px 5px 0 !important;
     padding: 10px 15px !important;
     transition: all .5s linear !important;
     font-weight: 300;
@@ -128,6 +133,16 @@
 
     &--right {
         padding-left: 15px;
+    }
+}
+
+.c-sidebar__icon {
+    margin-right: 5px !important;
+}
+
+@media (max-width: 576px) {
+    .c-sidebar {
+        transform: translateX(-100%);
     }
 }
 

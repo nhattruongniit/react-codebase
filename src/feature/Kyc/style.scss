@@ -1,0 +1,24 @@
+.create-kyc-container {
+  .create-kyc-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px
+  }
+  .kyc-item {
+    text-align: left;
+    font-size: 0.875rem;
+    p {
+      margin-bottom: 8px;
+    }
+    .header {
+      text-align: left;
+      font-size: 1.14285714em;
+      font-style: inherit;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.006em;
+      border-bottom: 1px solid #e9ecef
+    }
+  }
+}

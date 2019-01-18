@@ -1,0 +1,15 @@
+{
+  "apps": [{
+    "name": "kyc-client",
+    "script": "./server.js",
+    "instances": 1,
+    "exec_mode": "fork",
+    "env": {
+      "PORT": "3052",
+      "COOKIE_NAME": "__sid",
+      "NODE_PATH": "src/",
+      "USER_STORAGE": "user",
+      "KYC_API": "http://139.162.72.164:3050"
+    }
+  }]
+}

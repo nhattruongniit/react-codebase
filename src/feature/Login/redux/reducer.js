@@ -1,29 +1,24 @@
-export const LOGIN_BEGIN = 'LOGIN_BEGIN';
-export const LOGIN_FAIL = 'LOGIN_FAIL';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+// import jwtDecode from 'jwt-decode';
+
+export const AUTH_LOGIN = 'KYC/AUTH/LOGIN';
+export const AUTH_LOGOUT = 'KYC/AUTH/LOGOUT';
 
 const initialState = {
-    showLoading: false
-}
+  user: undefined,
+};
 
-export default function LoginReducer(state = initialState, action) {
-    switch (action.type) {
-        case LOGIN_BEGIN:
-          return {
-            ...state,
-            showLoading: true
-          }
-        case LOGIN_SUCCESS:
-          return {
-            ...state,
-            showLoading: false
-          }
-        case LOGIN_FAIL:
-          return {
-            ...state,
-            showLoading: false
-          }
-        default:
-          return state
-      }
-}
+const reducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case AUTH_LOGIN:
+      return {
+        ...state,
+        user: payload,
+      };
+    case AUTH_LOGOUT:
+      return initialState;
+    default:
+      return state;
+  }
+};
+
+export default reducer;

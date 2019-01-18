@@ -1,0 +1,16 @@
+.form-control-ma {
+  margin-bottom: 20px !important;
+  width: 100%;
+  position: relative;
+}
+
+.eyesPassword {
+  position: absolute;
+  right: 0;
+  top: 17px;
+  cursor: pointer;
+
+  svg {
+    font-size: 20px;
+  }
+}

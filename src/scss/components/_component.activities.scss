@@ -1,0 +1,59 @@
+/* ==========================================================================
+   # START ACTIVITIES COMPONENT
+   ========================================================================== 
+*/
+
+.c-activities {
+    background-image: url(/assets/images/bg-main.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.c-activities__container  {
+    width: 100%;
+    max-width: 460px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 1;
+    padding: 60px 50px 40px 50px;
+    background: #fff;
+    border-radius: 10px;
+    z-index: 5;
+}
+
+.c-activities__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--center {
+        justify-content: center;
+    }
+}
+
+.c-activities__heading {
+    line-height: 46px;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ED2553;
+}
+
+.c-activities__button {
+    margin: 25px 0;
+
+    svg {
+        margin-right: 10px;
+    }
+}
+
+/* ==========================================================================
+   # END ACTIVITIES COMPONENT
+   ========================================================================== 
+*/

@@ -1,9 +1,21 @@
+import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
 
-import LoginReducer from 'feature/Login/redux/reducer';
+// IMPORT_STORES
+import { loadingReducer } from 'feature/Loading';
+import { authReducer } from 'feature/Login';
+import { kycReducer } from 'feature/Kyc';
 
-const rootReducer = combineReducers({
-    login: LoginReducer
+const allReducers = {
+  // CONNECT_STORES
+  auth: authReducer,
+  kyc: kycReducer,
+  form,
+  loadingModal: loadingReducer,
+};
+
+export default combineReducers({
+  ...allReducers,
+  router: routerReducer,
 });
-
-export default rootReducer;

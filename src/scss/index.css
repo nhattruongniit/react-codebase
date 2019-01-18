@@ -457,12 +457,26 @@ fieldset {
   padding: 0; }
 
 body {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-size: 14px;
-  background-color: #eee; }
+  color: #565454;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: break-word; }
+
+form {
+  width: 100%; }
+
+a {
+  margin: 0 5px; }
+
+.o-container {
+  margin: 0 auto; }
+  .o-container--middle {
+    max-width: 800px; }
 
 /* ==========================================================================
-   # START HEADER COMPONENT
+   # START LOADING COMPONENT
    ========================================================================== 
 */
 .c-loading {
@@ -493,7 +507,7 @@ body {
   margin: -20px 0 -20px 0; }
 
 /* ==========================================================================
-   # END HEADER COMPONENT
+   # END LOADING COMPONENT
    ========================================================================== 
 */
 /* ==========================================================================
@@ -558,11 +572,12 @@ body {
 .c-sidebar {
   top: 0;
   left: 0;
-  width: 260px;
+  width: 240px;
   border: none;
   bottom: 0;
   z-index: 5;
   position: fixed;
+  transition: all .3s linear;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   color: #fff; }
 
@@ -598,7 +613,7 @@ body {
   padding: 5px 0;
   display: block;
   font-size: 18px;
-  text-align: left;
+  text-align: center;
   font-weight: 400;
   line-height: 30px;
   text-transform: uppercase;
@@ -626,7 +641,6 @@ body {
     background: #000; }
 
 .c-sidebar__nav {
-  width: 260px;
   height: calc(100vh - 75px);
   z-index: 4;
   position: relative;
@@ -644,11 +658,14 @@ body {
   position: relative;
   text-decoration: none;
   color: #fff; }
+  .c-sidebar__link:hover, .c-sidebar__link:focus, .c-sidebar__link:visited {
+    text-decoration: none;
+    color: #fff; }
   .c-sidebar__link.active .c-sidebar__button {
     background-color: #3f51b5 !important; }
 
 .c-sidebar__button {
-  margin: 10px 15px 0 !important;
+  margin: 10px 5px 0 !important;
   padding: 10px 15px !important;
   transition: all .5s linear !important;
   font-weight: 300;
@@ -661,6 +678,13 @@ body {
   .c-sidebar__expand--right {
     padding-left: 15px; }
 
+.c-sidebar__icon {
+  margin-right: 5px !important; }
+
+@media (max-width: 576px) {
+  .c-sidebar {
+    transform: translateX(-100%); } }
+
 /* ==========================================================================
    # END SIDEBAR COMPONENT
    ========================================================================== 
@@ -670,7 +694,7 @@ body {
    ========================================================================== 
 */
 .c-panel {
-  width: calc(100% - 260px);
+  width: calc(100% - 240px);
   position: relative;
   transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
   max-height: 100%;
@@ -679,6 +703,10 @@ body {
 
 .c-panel__content {
   padding: 20px 0 70px 0; }
+
+@media (max-width: 576px) {
+  .c-panel {
+    width: 100%; } }
 
 /* ==========================================================================
    # END PANEL COMPONENT
@@ -695,13 +723,12 @@ body {
   position: relative;
   min-width: 0;
   word-wrap: break-word;
-  font-size: .875rem;
+  font-size: 16px;
   margin-top: 30px;
   background: #fff;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   margin-bottom: 30px;
   border-radius: 6px;
-  height: 500px;
   display: flex;
   flex-direction: column; }
 
@@ -721,6 +748,207 @@ body {
 
 /* ==========================================================================
    # END CARD COMPONENT
+   ========================================================================== 
+*/
+/* ==========================================================================
+   # START BUTTON COMPONENT
+   ========================================================================== 
+*/
+.c-button {
+  margin: 10px 0 0 0; }
+  .c-button + .c-button {
+    margin-left: 15px; }
+
+.c-button__eyes {
+  outline: 0 !important;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  top: 24px;
+  cursor: pointer; }
+  .c-button__eyes i {
+    font-size: 20px; }
+
+/* ==========================================================================
+   # END BUTTON COMPONENT
+   ========================================================================== 
+*/
+/* ==========================================================================
+   # START MODAL COMPONENT
+   ========================================================================== 
+*/
+.c-modal {
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  padding: 1.2rem;
+  display: none; }
+  .c-modal--visible {
+    display: block; }
+
+.c-modal__content {
+  max-width: 750px;
+  position: relative;
+  padding: 1.2rem;
+  background: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
+  margin: 50px auto 0; }
+  .c-modal__content b {
+    margin: 0 5px; }
+
+.c-modal__svg {
+  text-align: center; }
+  .c-modal__svg svg {
+    font-size: 80px; }
+  .c-modal__svg--success svg {
+    color: #00ff00; }
+  .c-modal__svg--error svg {
+    color: #f00; }
+
+.c-modal__middle {
+  margin: 30px 0; }
+
+.c-modal__footer {
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2); }
+  .c-modal__footer--right {
+    text-align: right; }
+
+.c-modal__align--center {
+  text-align: center; }
+
+.c-modal__lead {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px;
+  letter-spacing: 1px; }
+  .c-modal__lead--success {
+    color: #00ff00; }
+  .c-modal__lead--error {
+    color: #f00; }
+
+/* ==========================================================================
+   # END MODAL COMPONENT
+   ========================================================================== 
+*/
+/* ==========================================================================
+   # START FORM COMPONENT
+   ========================================================================== 
+*/
+.c-form__row {
+  position: relative;
+  width: 100%; }
+
+/* ==========================================================================
+   # END FORM COMPONENT
+   ========================================================================== 
+*/
+/* ==========================================================================
+   # START TEXT COMPONENT
+   ========================================================================== 
+*/
+.c-text--error {
+  color: #f00;
+  margin: 10px 0; }
+
+.c-text__status {
+  font-weight: 500; }
+  .c-text__status.is-NEW {
+    color: #ffbf00; }
+  .c-text__status.is-APPROVED {
+    color: #1e7e34; }
+  .c-text__status.is-REJECTED {
+    color: #ed2553; }
+  .c-text__status.is-PENDING {
+    color: #ff7400; }
+
+/* ==========================================================================
+   # END TEXT COMPONENT
+   ========================================================================== 
+*/
+/* ==========================================================================
+   # START ROW COMPONENT
+   ========================================================================== 
+*/
+.c-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px; }
+  .c-row + .c-row {
+    margin-top: 15px; }
+
+.c-row__line {
+  border-top: 1px solid #dadada;
+  margin: 20px -15px; }
+
+@media (max-width: 576px) {
+  .c-row > div {
+    margin-top: 10px; } }
+
+/* ==========================================================================
+   # END ROW COMPONENT
+   ========================================================================== 
+*/
+/* ==========================================================================
+   # START ACTIVITIES COMPONENT
+   ========================================================================== 
+*/
+.c-activities {
+  background-image: url(/assets/images/bg-main.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh; }
+
+.c-activities__container {
+  width: 100%;
+  max-width: 460px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  opacity: 1;
+  padding: 60px 50px 40px 50px;
+  background: #fff;
+  border-radius: 10px;
+  z-index: 5; }
+
+.c-activities__options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .c-activities__options--center {
+    justify-content: center; }
+
+.c-activities__heading {
+  line-height: 46px;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ED2553; }
+
+.c-activities__button {
+  margin: 25px 0; }
+  .c-activities__button svg {
+    margin-right: 10px; }
+
+/* ==========================================================================
+   # END ACTIVITIES COMPONENT
    ========================================================================== 
 */
 /* ==========================================================================
