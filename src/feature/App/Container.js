@@ -3,17 +3,12 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Switch, Route } from 'react-router-dom';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUnlock, faUserPlus, faAngleDoubleRight, faBolt } from '@fortawesome/free-solid-svg-icons';
 import { Loading, loadingAction } from 'feature';
 import { storeAuthLogin } from 'feature/Login';
 import Helper from 'lib/helper';
 import { Sidebar } from 'component';
 import { getInfo } from './api';
 import { RoutesApp } from './Routes';
-
-library.add(faUnlock, faUserPlus, faAngleDoubleRight, faBolt);
 
 const switchRoutes = (
   <Switch>
