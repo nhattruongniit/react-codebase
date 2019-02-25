@@ -20,15 +20,15 @@ import './scss/index.css';
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
-// const composeEnhancers = process.env.NODE_ENV === 'production'
-//   ? compose
-//   : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === undefined // eslint-disable-line
-//     ? compose
-//     : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; // eslint-disable-line
+const composeEnhancers = process.env.NODE_ENV === 'production'
+  ? compose
+  : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === undefined // eslint-disable-line
+    ? compose
+    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; // eslint-disable-line
 
 const store = createStore(
   connectRouter(history)(combinedReducers),
-  compose(
+  composeEnhancers(
     applyMiddleware(routerMiddleware(history)),
     applyMiddleware(middleware),
     applyMiddleware(thunk),
