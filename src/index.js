@@ -15,7 +15,7 @@ import { App, Login, Register, ForgotPassword, ResetPassword } from 'feature';
 import combinedReducers from './reducer';
 import * as serviceWorker from './serviceWorker';
 
-import './scss/index.css';
+import './scss/index.scss';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -35,20 +35,28 @@ const store = createStore(
     // applyMiddleware(epicMiddleware),
   ),
 );
+
+const ReactApp = () => {
+  console.log('app re-render app');
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+          <Switch>
+            <Route exact path="/:nameApp/login" component={Login} />
+            <Route exact path="/:nameApp/register" component={Register} />
+            <Route exact path="/:nameApp/forgot-password" component={ForgotPassword} />
+            <Route exact path="/:nameApp/reset-password" component={ResetPassword} />
+            <Route path="/:nameApp/" component={App} />
+          </Switch>
+        </MuiThemeProvider>
+      </Provider>
+    </BrowserRouter>
+  );
+};
+
 ReactDOM.render((
-  <BrowserRouter>
-    <Provider store={store}>
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Switch>
-          <Route exact path="/:nameApp/login" component={Login} />
-          <Route exact path="/:nameApp/register" component={Register} />
-          <Route exact path="/:nameApp/forgot-password" component={ForgotPassword} />
-          <Route exact path="/:nameApp/reset-password" component={ResetPassword} />
-          <Route path="/:nameApp/" component={App} />
-        </Switch>
-      </MuiThemeProvider>
-    </Provider>
-  </BrowserRouter>
+  <ReactApp />
 ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

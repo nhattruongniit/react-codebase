@@ -41,19 +41,21 @@ class Login extends Component {
     console.log('send email again.');
   }
 
-  handleSubmit = async (payload) => {
-    try {
-      // storeAuthLogin: save data into redux: // storeAuthLogin(data);
-      // eslint-disable-next-line no-unused-vars
-      const { loadingAction, storeAuthLogin, history } = this.props;
-      await loadingAction(() => login(this.hookNameApp, payload));
-      const cookie = Helper.getCookie();
-      if (cookie) history.push(`/${this.hookNameApp}`);
-    } catch (error) {
-      this.setState({
-        mgsError: error.message,
-      });
-    }
+  handleSubmit = async () => {
+    const { history } = this.props;
+    history.push(`/${this.hookNameApp}`);
+    // try {
+    //   // storeAuthLogin: save data into redux: // storeAuthLogin(data);
+    //   // eslint-disable-next-line no-unused-vars
+    //   const { loadingAction, storeAuthLogin, history } = this.props;
+    //   await loadingAction(() => login(this.hookNameApp, payload));
+    //   const cookie = Helper.getCookie();
+    //   if (cookie) history.push(`/${this.hookNameApp}`);
+    // } catch (error) {
+    //   this.setState({
+    //     mgsError: error.message,
+    //   });
+    // }
   }
 
   render() {

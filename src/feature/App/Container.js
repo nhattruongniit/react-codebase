@@ -33,22 +33,22 @@ class App extends Component {
   }
 
   componentWillMount = async () => {
-    const { hookNameApp } = this.state;
-    const { history, loadingAction } = this.props;
-    Helper.setStorage('nameApp', hookNameApp);
-    const cookie = Helper.getCookie();
-    if (cookie) {
-      try {
-        const { data } = await loadingAction(() => getInfo());
-        Helper.setStorage('user', JSON.stringify(data));
-        history.push(`/${hookNameApp}/profile`);
-      } catch (error) {
-        this.clearStorage();
-        history.push('login');
-      }
-    } else {
-      history.push(`/${hookNameApp}/login`);
-    }
+    // const { hookNameApp } = this.state;
+    // const { history, loadingAction } = this.props;
+    // Helper.setStorage('nameApp', hookNameApp);
+    // const cookie = Helper.getCookie();
+    // if (cookie) {
+    //   try {
+    //     const { data } = await loadingAction(() => getInfo());
+    //     Helper.setStorage('user', JSON.stringify(data));
+    //     history.push(`/${hookNameApp}/profile`);
+    //   } catch (error) {
+    //     this.clearStorage();
+    //     history.push('login');
+    //   }
+    // } else {
+    //   history.push(`/${hookNameApp}/login`);
+    // }
   }
 
   clearStorage = () => {
