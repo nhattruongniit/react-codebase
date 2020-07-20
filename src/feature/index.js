@@ -5,22 +5,7 @@ import ChangePassword from './ChangePassword';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import Profile from './Profile';
-import FillForm from './FillForm';
 import Kyc from './Kyc';
-import NotFound from './NotFound';
 import { Loading, loadingAction } from './Loading';
 
-export {
-  App,
-  Kyc,
-  Login,
-  Register,
-  FillForm,
-  Profile,
-  ChangePassword,
-  ForgotPassword,
-  ResetPassword,
-  NotFound,
-  Loading,
-  loadingAction,
-};
+export { App, Kyc, Login, Register, Profile, ChangePassword, ForgotPassword, ResetPassword, Loading, loadingAction };

@@ -7,12 +7,13 @@ import { Loading, loadingAction } from 'feature';
 import { storeAuthLogin } from 'feature/Login';
 import Helper from 'lib/helper';
 import { Sidebar } from 'component';
-import { getInfo } from './api';
 import { RoutesApp } from './Routes';
 
 const switchRoutes = (
   <Switch>
-    {RoutesApp.map(item => <Route exact path={item.path} component={item.component} key={item.path} />)}
+    {RoutesApp.map(item => (
+      <Route exact path={item.path} component={item.component} key={item.path} />
+    ))}
   </Switch>
 );
 
@@ -21,11 +22,15 @@ class App extends Component {
     history: PropTypes.any.isRequired,
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
-    const { match: { params: { nameApp } } } = this.props;
+    const {
+      match: {
+        params: { nameApp },
+      },
+    } = this.props;
     this.state = {
       openExpand: false,
       hookNameApp: nameApp,
@@ -49,34 +54,36 @@ class App extends Component {
     // } else {
     //   history.push(`/${hookNameApp}/login`);
     // }
-  }
+  };
 
   clearStorage = () => {
     Helper.removeStorage('user');
     Helper.removeCookie();
-  }
+  };
 
   handleOpenExpand = () => {
     const { openExpand } = this.state;
     this.setState({ openExpand: !openExpand });
-  }
+  };
 
   handleLogout = () => {
     const { history } = this.props;
     this.clearStorage();
     history.push('login');
-  }
+  };
 
   titlePage = () => {
     let name;
     const { hookNameApp } = this.state;
-    const { location: { pathname } } = this.props;
-    RoutesApp.map((item) => {
+    const {
+      location: { pathname },
+    } = this.props;
+    RoutesApp.map(item => {
       if (`/${hookNameApp}/${item.to}` === pathname) name = item.text;
       return null;
     });
     return name;
-  }
+  };
 
   render() {
     const { openExpand, hookNameApp } = this.state;
@@ -96,9 +103,7 @@ class App extends Component {
                 <h4 className="c-heading c-heading__h4">{this.titlePage()}</h4>
               </div>
               <div className="c-card__body">
-                <div className="container-fluid">
-                  {switchRoutes}
-                </div>
+                <div className="container-fluid">{switchRoutes}</div>
               </div>
             </div>
           </div>
@@ -116,11 +121,13 @@ const mapStateToProps = ({ auth }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    loadingAction,
-    storeAuthLogin,
-  }, dispatch)
-);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      loadingAction,
+      storeAuthLogin,
+    },
+    dispatch,
+  );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

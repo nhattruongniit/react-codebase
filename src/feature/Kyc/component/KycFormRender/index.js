@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 import { FormInput } from 'component';
 import Button from '@material-ui/core/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  required,
-  email,
-  min,
-  max,
-} from 'lib/validation';
+import { required, email, min, max } from 'lib/validation';
 
 const FORM_FACTORY = {
   TextField: FormInput,
@@ -22,37 +17,26 @@ const VALIDATE_FACTORY = {
   max,
 };
 
-const generateValidate = validate => validate.map(({ func, arg }) => {
-  if (!VALIDATE_FACTORY[func]) {
-    throw Error(`Miss ${func}`);
-  }
-  if (arg) {
-    return VALIDATE_FACTORY[func](arg);
-  }
-  return VALIDATE_FACTORY[func];
-});
+const generateValidate = validate =>
+  validate.map(({ func, arg }) => {
+    if (!VALIDATE_FACTORY[func]) {
+      throw Error(`Miss ${func}`);
+    }
+    if (arg) {
+      return VALIDATE_FACTORY[func](arg);
+    }
+    return VALIDATE_FACTORY[func];
+  });
 
 const KycFormRender = ({ config, handleSubmit }) => (
   <div className="login-form">
     <form className="form-inline clearfix" onSubmit={handleSubmit}>
-      {config && config.map((input) => {
-        const {
-          inputType,
-          id,
-          validate,
-          typeOf,
-          ...props
-        } = input;
+      {config &&
+        config.map(input => {
+          const { inputType, id, validate, typeOf, ...props } = input;
 
-        return (
-          <Field
-            key={id}
-            {...props}
-            validate={generateValidate(validate)}
-            component={FORM_FACTORY[inputType]}
-          />
-        );
-      })}
+          return <Field key={id} {...props} validate={generateValidate(validate)} component={FORM_FACTORY[inputType]} />;
+        })}
       <div className="form-control-ma">
         <Button type="submit" variant="outlined" color="primary">
           <FontAwesomeIcon icon="bolt" />

@@ -37,6 +37,9 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
     'import/imports-first': 0,
+    'operator-linebreak': ['off'],
+    'implicit-arrow-linebreak': ['off'],
+    'arrow-parens': ['off'],
   },
   parserOptions: {
     ecmaFeatures: {
